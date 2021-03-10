@@ -7,8 +7,23 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+/// esto solo realiza el proceso de autoentificacion 
+/// pero no cuenta con elemntos de segurirdad
+
 router.post('/login',(req,res,next)=>{
-  res.
+  ///console.log(req.body.email , req.body.passwd)
+  usuario.login(req.body.email , req.body.passwd, (e,d)=>{
+    if(d){
+      res.send('login correcto');
+      ses=req.session;
+      console.log(ses.id);
+
+    }else{
+      res.json(e);
+    }
+
+  });
 });
+
 
 module.exports = router;
